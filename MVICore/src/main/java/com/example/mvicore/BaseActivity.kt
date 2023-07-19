@@ -7,11 +7,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.example.mvicore.viewmodel.BaseViewModel
+import com.example.mvicore.viewmodel.IState
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import java.lang.reflect.Method
 import java.lang.reflect.ParameterizedType
 
-open class BaseActivity<BINDING:ViewDataBinding,MODEL:ViewModel>:AppCompatActivity() {
+open class BaseActivity<BINDING:ViewDataBinding,MODEL:BaseViewModel<*,*>>:AppCompatActivity() {
     lateinit var binding:BINDING
     lateinit var viewModel:MODEL
+    private lateinit var map:Map<*,Method>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val type = this.javaClass.genericSuperclass
@@ -27,9 +34,26 @@ open class BaseActivity<BINDING:ViewDataBinding,MODEL:ViewModel>:AppCompatActivi
             val vm = types[1]
             if (vm is Class<*>) {
                 viewModel=ViewModelProvider(this).get(vm as Class<ViewModel>) as MODEL
+                val vmSuper = vm.genericSuperclass
+                if (vmSuper is ParameterizedType) {
+                    val state = vmSuper.actualTypeArguments[1]
+                    if (state is Class<*>) {
+                        this.javaClass.methods
+                            .filter{it.parameterTypes.size ==1 && state.isAssignableFrom(it.parameterTypes[0])}
+                            .associateBy { it.parameterTypes[0] }
+                        lifecycleScope.launch {
+                            viewModel.state.collect(this@BaseActivity::collect)
+                        }
+                    }
+                }
+
             }
 
         }
 
     }
+    private fun collect(state: IState?){
+        map[state?.javaClass]?.invoke(this, state)
+    }
+
 }

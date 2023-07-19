@@ -21,16 +21,11 @@ class MainActivity : BaseActivity<ActivityMainBinding,MainViewModel>() {
                 viewModel.intent.send(MainIntent.GetSimpleVideo)
             }
         }
-        lifecycleScope.launch {
-            viewModel.state.collect{
-                when (it){
-                    is MainState.Error-> Toast.makeText(this@MainActivity, ""+it.msg ,Toast.LENGTH_SHORT).show()
-                    is MainState.Response->binding.tv.text=it.data[0].description
-                    else->{}
-                }
-            }
-        }
-
-
+    }
+    fun load(response:MainState.Response){
+        binding.tv.text=response.data[0].description
+    }
+    fun error(error:MainState.Error){
+        Toast.makeText(this@MainActivity, ""+error.msg, Toast.LENGTH_SHORT).show()
     }
 }
