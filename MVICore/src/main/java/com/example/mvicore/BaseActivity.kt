@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import java.lang.reflect.ParameterizedType
 
-class BaseActivity<BINDING:ViewDataBinding,MODEL:ViewModel>:AppCompatActivity() {
+open class BaseActivity<BINDING:ViewDataBinding,MODEL:ViewModel>:AppCompatActivity() {
     lateinit var binding:BINDING
     lateinit var viewModel:MODEL
     override fun onCreate(savedInstanceState: Bundle?) {

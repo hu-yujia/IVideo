@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 
-class BaseViewModel<INTENT:IIntent,STATE:IState>:ViewModel() {
+open class BaseViewModel<INTENT:IIntent,STATE:IState>:ViewModel() {
     val intent:Channel<INTENT> by lazy {Channel(Channel.UNLIMITED)}
-    val state:Flow<STATE?> by lazy { MutableStateFlow(null) }
+    val state:MutableStateFlow<STATE?> by lazy { MutableStateFlow(null) }
 }
