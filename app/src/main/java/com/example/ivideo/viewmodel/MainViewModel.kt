@@ -13,23 +13,21 @@ class MainViewModel:BaseViewModel<MainIntent,MainState>() {
     init {
         viewModelScope.launch {
             intent.consumeAsFlow().collect{
-                when(it){
-                    MainIntent.GetSimpleVideo->{
-                        state.value=
-                        try {
-                            val res = service.getRecommendSimpleVideo()
-                            if(res.code==0){
-                                MainState.Response(res.data)
-                            }else{
-                                MainState.Error(res.msg)
-                            }
-                        }catch (e:Exception){
-                            MainState.Error(e.message?:"")
-                        }
-
-                    }
+                        when(it){
+                            is MainIntent.Start->start(it.count)
                 }
             }
         }
+
+    }
+    fun start(count:Int){
+        viewModelScope.launch {
+            for(i in count downTo  0){
+                state.value =MainState.Progress(i)
+                Thread.sleep(1000)
+            }
+            state.value=MainState.Finish("结束")
+        }
+
     }
 }

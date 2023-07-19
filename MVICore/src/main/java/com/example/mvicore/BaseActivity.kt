@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.reflect.Method
 import java.lang.reflect.ParameterizedType
-
+@Suppress("UNCHECKED_CAST")
 open class BaseActivity<BINDING:ViewDataBinding,MODEL:BaseViewModel<*,*>>:AppCompatActivity() {
     lateinit var binding:BINDING
     lateinit var viewModel:MODEL
@@ -38,7 +38,7 @@ open class BaseActivity<BINDING:ViewDataBinding,MODEL:BaseViewModel<*,*>>:AppCom
                 if (vmSuper is ParameterizedType) {
                     val state = vmSuper.actualTypeArguments[1]
                     if (state is Class<*>) {
-                        this.javaClass.methods
+                        map=this.javaClass.methods
                             .filter{it.parameterTypes.size ==1 && state.isAssignableFrom(it.parameterTypes[0])}
                             .associateBy { it.parameterTypes[0] }
                         lifecycleScope.launch {

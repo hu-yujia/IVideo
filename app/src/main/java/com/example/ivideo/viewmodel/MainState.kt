@@ -5,6 +5,6 @@ import com.example.ivideo.model.VideoModel
 import com.example.mvicore.viewmodel.IState
 
 sealed class MainState:IState {
-    data class Error(val msg:String):MainState()
-    data class Response(val data:List<VideoModel>):MainState()
+    data class Progress(val v:Int):MainState()
+    data class Finish(val s:String):MainState()
 }
