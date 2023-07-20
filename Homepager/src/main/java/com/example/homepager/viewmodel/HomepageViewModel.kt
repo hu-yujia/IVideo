@@ -13,15 +13,15 @@ class HomepageViewModel:BaseViewModel<HomepageIntent, HomepageState>() {
         viewModelScope.launch {
             intent.consumeAsFlow().collect {
                 when(it) {
-                    is HomepageIntent.LoadPage -> loadPage(it)
+                    HomepageIntent.LoadType -> loadType()
                 }
             }
         }
     }
-    fun loadPage(loadPage: HomepageIntent.LoadPage) {
+    fun loadType() {
         viewModelScope.launch {
             state.value = try {
-                val res = service.getRecommendSimpleVideo(loadPage.page, 10)
+                val res = service.getSimpleType()
                 if (res.code == 0) {
                     HomepageState.Response(res.data)
                 } else {

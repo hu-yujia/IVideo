@@ -1,7 +1,7 @@
 package com.example.ivideo.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.example.ivideo.net.MainService
+
 import com.example.mvicore.viewmodel.BaseViewModel
 import com.example.network.retrofit
 import kotlinx.coroutines.Dispatchers
@@ -11,7 +11,7 @@ import okhttp3.Dispatcher
 import java.lang.Exception
 
 class MainViewModel:BaseViewModel<MainIntent, MainState>() {
-    val service = retrofit.create(MainService::class.java)
+
     init {
         viewModelScope.launch {
             intent.consumeAsFlow().collect {

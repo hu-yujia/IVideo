@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:checked="true" android:id="@+id/home_homepage" android:title="首页" android:icon="@drawable/ic_action_play"></item>
+    <item android:id="@+id/home_movies" android:title="放映厅" android:icon="@drawable/ic_action_movies"></item>
+    <item android:id="@null" android:checkable="false"></item>
+    <item android:id="@+id/hoem_recording" android:title="直播" android:icon="@drawable/ic_action_recording"></item>
+    <item android:id="@+id/home_mine" android:title="我的" android:icon="@drawable/ic_action_preson"></item>
+</menu>

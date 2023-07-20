@@ -14,9 +14,10 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        kapt {
-            arguments {
-                arg("AROUTER_MODULE_NAME",project.getName())
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
             }
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -54,6 +55,7 @@ dependencies {
     implementation project(path: ':network')
     implementation project(path: ':MVICore')
     kapt libs.arouter_compiler
+    kapt libs.room_compiler
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.9.0'

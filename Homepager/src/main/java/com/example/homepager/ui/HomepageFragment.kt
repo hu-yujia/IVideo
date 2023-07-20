@@ -2,12 +2,10 @@ package com.example.homepager.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.example.homepager.R
+import com.example.homepager.adapter.SimpleTypeAdapter
 import com.example.homepager.databinding.FragmentHomepageBinding
 import com.example.homepager.viewmodel.HomepageIntent
 import com.example.homepager.viewmodel.HomepageState
@@ -26,29 +24,23 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class HomepageFragment : BaseFragment<FragmentHomepageBinding,HomepageViewModel>() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    val adapter by lazy { SimpleTypeAdapter(childFragmentManager) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch{
-            viewModel.intent.send(HomepageIntent.LoadPage(1))
+            viewModel.intent.send(HomepageIntent.LoadType)
         }
+        binding.page.adapter=adapter
+        binding.tab.setupWithViewPager(binding.page)
+        binding.page.currentItem=1
     }
     fun erro(error:HomepageState.Error){
         Toast.makeText(context, error.msg, Toast.LENGTH_SHORT).show()
     }
     fun loaded(response:HomepageState.Response){
-        binding.tv.text=response.data[0].description
+        adapter+=response.data
     }
 
     companion object {
@@ -57,17 +49,11 @@ class HomepageFragment : BaseFragment<FragmentHomepageBinding,HomepageViewModel>
          * this fragment using the provided parameters.
          *
          * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
          * @return A new instance of fragment HomepageFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomepageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance() = HomepageFragment()
     }
+
 }

@@ -11,7 +11,12 @@ android {
     defaultConfig {
         minSdk 24
         targetSdk 33
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -50,6 +55,9 @@ dependencies {
     api libs.smart
     api libs.smartheader
     api libs.smartfooter
+    api libs.room
+    api libs.room_ktx
+    kapt libs.room_compiler
     implementation project(path: ':network')
     implementation project(path: ':MVICore')
     implementation 'androidx.core:core-ktx:1.8.0'
