@@ -15,6 +15,6 @@ class App:Application() {
             ARouter.openDebug()
             ARouter.openLog()
         }
-        homeDatabase=Room.databaseBuilder(this,HomeDatabase::class.java,"home").build()
+        homeDatabase=Room.databaseBuilder(this,HomeDatabase::class.java,"homeDatabase").build()
     }
 }

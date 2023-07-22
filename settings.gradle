@@ -18,3 +18,4 @@ include ':network'
 include ':MVICore'
 include ':Homepager'
 
+include ':common'

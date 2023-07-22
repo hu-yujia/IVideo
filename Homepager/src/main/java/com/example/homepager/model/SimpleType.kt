@@ -12,4 +12,5 @@ data class SimpleType(
     val pid: Int,
     val pinyin: String,
     val typename: String
+
 )

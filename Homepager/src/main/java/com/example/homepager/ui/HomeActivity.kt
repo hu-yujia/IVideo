@@ -2,6 +2,7 @@ package com.example.homepager.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.homepager.R
 import com.example.homepager.databinding.ActivityHomeBinding

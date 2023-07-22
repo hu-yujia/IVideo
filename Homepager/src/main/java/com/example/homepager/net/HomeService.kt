@@ -11,4 +11,9 @@ interface HomeService {
     suspend fun getRecommendSimpleVideo(@Query("page") page:Int, @Query("pagesize") pagesize:Int): ApiRes<List<VideoModel>>
     @GET("/videotype/getSimpleType")
     suspend fun getSimpleType(): ApiRes<List<SimpleType>>
+
+    @GET("/videosimple/getSimpleVideoByChannelId")
+    suspend fun getSimpleVideoByChannelId(@Query("channelId") channelId:String, @Query("page") page:Int, @Query("pagesize") pagesize:Int): ApiRes<List<VideoModel>>
+
+
 }

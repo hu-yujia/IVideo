@@ -4,8 +4,13 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.common.logDebug
 import com.example.homepager.adapter.SimpleTypeAdapter
+import com.example.homepager.database.homeDatabase
 import com.example.homepager.databinding.FragmentHomepageBinding
 import com.example.homepager.viewmodel.HomepageIntent
 import com.example.homepager.viewmodel.HomepageState
@@ -40,8 +45,19 @@ class HomepageFragment : BaseFragment<FragmentHomepageBinding,HomepageViewModel>
         Toast.makeText(context, error.msg, Toast.LENGTH_SHORT).show()
     }
     fun loaded(response:HomepageState.Response){
+        logDebug("网络加载${response.data}")
+        if(adapter.types!=response.data){
+            adapter.types.clear()
+            adapter+=response.data
+        }
+    }
+    fun loadLocal(response:HomepageState.LocalResponse){
+        logDebug("本地加载${response.data}")
         adapter+=response.data
     }
+
+    override val defaultViewModelProviderFactory: ViewModelProvider.Factory
+        get() = viewModelFactory { initializer { HomepageViewModel(requireContext().homeDatabase.getSimpleTypeDao()) } }
 
     companion object {
         /**

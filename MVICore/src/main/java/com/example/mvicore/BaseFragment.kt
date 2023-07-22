@@ -35,7 +35,7 @@ open class BaseFragment<BINDING: ViewDataBinding,MODEL: BaseViewModel<*, *>>:Fra
 
             val vm = types[1]
             if (vm is Class<*>) {
-                viewModel= ViewModelProvider(requireActivity()).get(vm as Class<ViewModel>) as MODEL
+                viewModel= ViewModelProvider(this).get(vm as Class<ViewModel>) as MODEL
                 val vmSuper = vm.genericSuperclass
                 if (vmSuper is ParameterizedType) {
                     val state = vmSuper.actualTypeArguments[1]

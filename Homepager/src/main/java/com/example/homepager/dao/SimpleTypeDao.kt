@@ -1,6 +1,5 @@
 package com.example.homepager.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
@@ -11,6 +10,6 @@ interface SimpleTypeDao {
     @Upsert
     fun insert(vararg types: SimpleType)
 
-    @Query("select * from simpletype")
-    fun getAll():LiveData<List<SimpleType>>
+    @Query("select * from SimpleType")
+    fun getAll():List<SimpleType>
 }

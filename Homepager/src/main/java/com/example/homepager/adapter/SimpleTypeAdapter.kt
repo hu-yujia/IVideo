@@ -9,7 +9,7 @@ import com.example.homepager.ui.RecommendFragment
 import com.example.homepager.ui.SimpleTypeFragment
 
 class SimpleTypeAdapter(fragmentManager: FragmentManager):FragmentPagerAdapter(fragmentManager) {
-    private var types:MutableList<SimpleType> = mutableListOf()
+    var types:MutableList<SimpleType> = mutableListOf()
     override fun getCount(): Int {
         return types.size + 2
     }
@@ -18,7 +18,7 @@ class SimpleTypeAdapter(fragmentManager: FragmentManager):FragmentPagerAdapter(f
         return when(position){
             0->FollowFragment.newInstance()
             1->RecommendFragment.newInstance()
-            else->SimpleTypeFragment.newInstance(types[position-2].typename)
+            else->SimpleTypeFragment.newInstance(types[position-2].channelid)
         }
     }
 

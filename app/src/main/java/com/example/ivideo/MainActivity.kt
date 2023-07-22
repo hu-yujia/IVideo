@@ -17,7 +17,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
-            viewModel.intent.send(MainIntent.Start(10))
+            viewModel.intent.send(MainIntent.Start(3))
         }
         binding.version.text = "版本: ${BuildConfig.VERSION_NAME}"
     }
