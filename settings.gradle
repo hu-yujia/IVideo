@@ -19,3 +19,4 @@ include ':MVICore'
 include ':Homepager'
 
 include ':common'
+include ':Mine'

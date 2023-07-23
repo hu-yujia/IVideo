@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.common.logDebug
+import com.example.homepager.R
 import com.example.homepager.adapter.SimpleTypeAdapter
 import com.example.homepager.database.homeDatabase
 import com.example.homepager.databinding.FragmentHomepageBinding
@@ -40,6 +41,7 @@ class HomepageFragment : BaseFragment<FragmentHomepageBinding,HomepageViewModel>
         binding.page.adapter=adapter
         binding.tab.setupWithViewPager(binding.page)
         binding.page.currentItem=1
+        binding.avaterIv.setImageResource(R.drawable.ic_action_preson)
     }
     fun erro(error:HomepageState.Error){
         Toast.makeText(context, error.msg, Toast.LENGTH_SHORT).show()
