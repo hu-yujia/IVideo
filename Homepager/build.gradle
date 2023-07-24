@@ -58,6 +58,7 @@ dependencies {
     api libs.room
     api libs.room_ktx
     kapt libs.room_compiler
+    api project(path: ':Mine')
     implementation project(path: ':network')
     implementation project(path: ':common')
     implementation project(path: ':MVICore')

@@ -27,3 +27,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding,HomeViewModel>() {
         }
     }
 }
+
+
+
+
+
+
+
+
+

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common.logDebug
 import com.example.homepager.R
 import com.example.homepager.adapter.SimpleTypeAdapter
@@ -16,7 +17,9 @@ import com.example.homepager.databinding.FragmentHomepageBinding
 import com.example.homepager.viewmodel.HomepageIntent
 import com.example.homepager.viewmodel.HomepageState
 import com.example.homepager.viewmodel.HomepageViewModel
+import com.example.mine.MineFragment
 import com.example.mvicore.BaseFragment
+import com.example.network.user
 import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
@@ -42,6 +45,17 @@ class HomepageFragment : BaseFragment<FragmentHomepageBinding,HomepageViewModel>
         binding.tab.setupWithViewPager(binding.page)
         binding.page.currentItem=1
         binding.avaterIv.setImageResource(R.drawable.ic_action_preson)
+        binding.avaterIv.setOnClickListener{
+            if(user==null){
+                ARouter.getInstance()
+                    .build("/mine/LoginMainActivity")
+                    .navigation()
+            }else{
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.content,MineFragment.newInstance())
+                    .commit()
+            }
+        }
     }
     fun erro(error:HomepageState.Error){
         Toast.makeText(context, error.msg, Toast.LENGTH_SHORT).show()

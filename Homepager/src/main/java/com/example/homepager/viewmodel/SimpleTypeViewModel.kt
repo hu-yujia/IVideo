@@ -21,6 +21,7 @@ class SimpleTypeViewModel(val dao:VideoDao):BaseViewModel<SimpleTypeIntent,Simpl
                 when(it){
                     is SimpleTypeIntent.GetLoacalVideo-> getVideo(it.channelId)
                     is SimpleTypeIntent.GetRemoteVideo->getRemoteVideo(it.channelId,it.page)
+                    else -> {}
                 }
             }
         }

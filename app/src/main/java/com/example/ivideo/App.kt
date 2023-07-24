@@ -10,11 +10,12 @@ class App:Application() {
     override fun onCreate() {
         super.onCreate()
 
-        ARouter.init(this)
         if (BuildConfig.DEBUG) {
             ARouter.openDebug()
             ARouter.openLog()
         }
+        ARouter.init(this)
+
         homeDatabase=Room.databaseBuilder(this,HomeDatabase::class.java,"homeDatabase").build()
     }
 }
