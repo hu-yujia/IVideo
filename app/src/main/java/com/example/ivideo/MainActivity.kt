@@ -1,5 +1,6 @@
 package com.example.ivideo
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
@@ -28,5 +30,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         ARouter.getInstance()
             .build("/homemodel/home")
             .navigation()
+        finish()
     }
 }

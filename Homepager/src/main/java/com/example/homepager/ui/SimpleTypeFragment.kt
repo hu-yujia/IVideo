@@ -49,7 +49,6 @@ class SimpleTypeFragment : BaseFragment<FragmentSimpleTypeBinding,SimpleTypeView
         super.onCreate(savedInstanceState)
         arguments?.let {
             channelId = it.getString(CHANNEL_ID,"")
-
         }
     }
 
