@@ -57,6 +57,11 @@ dependencies {
     api libs.smartfooter
     api libs.room
     api libs.room_ktx
+    api libs.gsy
+    api libs.danmaku
+    api libs.danmaku_armv7a
+    api libs.danmaku_armv5
+    api libs.danmaku_x86
     kapt libs.room_compiler
     api project(path: ':Mine')
     implementation project(path: ':network')

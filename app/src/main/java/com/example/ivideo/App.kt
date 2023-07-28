@@ -21,6 +21,7 @@ class App:Application() {
 
         homeDatabase=Room.databaseBuilder(this,HomeDatabase::class.java,"homeDatabase").build()
         val preferences = getSharedPreferences("login", MODE_PRIVATE)
+//        preferences.edit().remove("user").apply()
         preferences.getString("user",null)?.let{user
             user = gson.fromJson(it,User::class.java)
         }

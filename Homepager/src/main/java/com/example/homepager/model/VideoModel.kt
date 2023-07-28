@@ -2,6 +2,7 @@ package com.example.homepager.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.alibaba.android.arouter.launcher.ARouter
 
 @Entity
 data class VideoModel(
@@ -24,4 +25,8 @@ data class VideoModel(
     val verifycode: String,
     val videomainimag: String,
     val videopath: String
-)
+){
+    fun showDetails(){
+        ARouter.getInstance().build("/homemodel/detials").withInt("id",id).navigation()
+    }
+}
