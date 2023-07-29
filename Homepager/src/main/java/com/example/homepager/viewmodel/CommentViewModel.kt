@@ -1,10 +1,12 @@
 package com.example.homepager.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import com.example.common.logDebug
 import com.example.homepager.dao.VideoDao
 import com.example.homepager.model.Comment
 import com.example.homepager.net.HomeService
 import com.example.mvicore.viewmodel.BaseViewModel
+import com.example.network.gson
 import com.example.network.retrofit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.consumeAsFlow
@@ -32,6 +34,7 @@ class CommentViewModel(val videoDao: VideoDao) :BaseViewModel<CommentIntent,Comm
     fun publishComment(comment:Comment){
         viewModelScope.launch {
             state.value = try {
+                logDebug(gson.toJson(comment))
                 val res=service.publishComment(comment)
                 if(res.code==0){
                     CommentState.PublishResponse(res.data)
@@ -46,7 +49,9 @@ class CommentViewModel(val videoDao: VideoDao) :BaseViewModel<CommentIntent,Comm
     fun loadComment(itemId:String){
         viewModelScope.launch {
             state.value = try {
+
                 val res=service.getgetCommentByUserId(0,itemId)
+
                 if(res.code==0){
                     CommentState.CommentResponse(res.data)
                 }else{

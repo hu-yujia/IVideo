@@ -30,7 +30,6 @@ open class BaseActivity<BINDING:ViewDataBinding,MODEL:BaseViewModel<*,*>>:AppCom
                 binding = method.invoke(null,layoutInflater) as BINDING
                 setContentView(binding.root)
             }
-
             val vm = types[1]
             if (vm is Class<*>) {
                 viewModel=ViewModelProvider(this).get(vm as Class<ViewModel>) as MODEL

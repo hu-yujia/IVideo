@@ -1,8 +1,12 @@
 package com.example.homepager.model
 
+import com.example.homepager.net.DataDeserialzer
+import com.google.gson.annotations.JsonAdapter
+
 data class Comment(
     val agreenum: Int=0,
     val content: String,
+    @JsonAdapter(DataDeserialzer::class)
     val createtime: String="",
     val datatype: Int,
     val id:Int =0,

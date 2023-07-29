@@ -25,4 +25,6 @@ interface HomeService {
     suspend fun getgetCommentByUserId(@Query("datatype")datatype:Int,@Query("itemid")itemid:String):ApiRes<List<Comment>>
     @POST("/comment/publishComment")
     suspend fun publishComment(@Body comment: Comment):ApiRes<Comment>
+    @POST("/bulletscreen/publishBulletScreen")
+    suspend fun sendBulletScreen(@Body bulletScreen: BulletScreen):ApiRes<BulletScreen>
 }
