@@ -11,7 +11,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/AVCore" />
             <option value="$PROJECT_DIR$/Homepager" />
+            <option value="$PROJECT_DIR$/Live" />
             <option value="$PROJECT_DIR$/MVICore" />
             <option value="$PROJECT_DIR$/Mine" />
             <option value="$PROJECT_DIR$/app" />

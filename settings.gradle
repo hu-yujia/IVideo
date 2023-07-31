@@ -24,3 +24,5 @@ include ':Homepager'
 
 include ':common'
 include ':Mine'
+include ':AVCore'
+include ':Live'

@@ -3,12 +3,13 @@ package com.example.ivideo
 import android.app.Application
 import androidx.room.Room
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.common.BaseApplication
 import com.example.homepager.database.HomeDatabase
 import com.example.network.gson
 import com.example.network.model.User
 import com.example.network.user
 
-class App:Application() {
+class App: BaseApplication() {
     lateinit var homeDatabase: HomeDatabase
     override fun onCreate() {
         super.onCreate()

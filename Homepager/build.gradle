@@ -48,9 +48,10 @@ kapt {
 def libs = rootProject.ext.dependencies
 
 dependencies {
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+
     implementation libs.viewmodel
     implementation libs.arouter
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     kapt libs.arouter_compiler
     api libs.smart
     api libs.smartheader
