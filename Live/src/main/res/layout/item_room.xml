@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="liveModel"
+            type="com.example.live.model.LiveRoom" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:onClick="@{()->liveModel.look()}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:image_url="@{liveModel.logo}"
+            android:id="@+id/logo"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/name"/>
+
+        <TextView
+
+            app:layout_constraintStart_toEndOf="@id/logo"
+            app:layout_constraintTop_toTopOf="@id/logo"
+            app:layout_constraintBottom_toBottomOf="@id/logo"
+            android:layout_width="0dp"
+            android:text="@{liveModel.name}"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintHorizontal_weight="1"
+            android:id="@+id/name"/>
+        <TextView
+            app:layout_constraintStart_toEndOf="@id/name"
+            app:layout_constraintTop_toTopOf="@id/logo"
+            app:layout_constraintBottom_toBottomOf="@id/logo"
+            android:layout_width="0dp"
+            android:text="@{liveModel.info}"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintHorizontal_weight="1"
+            android:id="@+id/info"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

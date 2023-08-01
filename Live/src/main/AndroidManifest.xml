@@ -3,6 +3,9 @@
 
     <application>
         <activity
+            android:name=".LiveActivity"
+            android:exported="false" />
+        <activity
             android:name=".PublishActivity"
             android:exported="false" />
     </application>

@@ -52,6 +52,7 @@ dependencies {
 
     implementation libs.viewmodel
     implementation libs.arouter
+    implementation project(path: ':Live')
     kapt libs.arouter_compiler
     api libs.smart
     api libs.smartheader

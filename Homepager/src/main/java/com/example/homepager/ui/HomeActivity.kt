@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.homepager.R
 import com.example.homepager.databinding.ActivityHomeBinding
 import com.example.homepager.viewmodel.HomeViewModel
+import com.example.live.LiveRoomFragment
 import com.example.mine.MineFragment
 import com.example.mvicore.BaseActivity
 import com.example.network.user
@@ -30,12 +31,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding,HomeViewModel>() {
             if(it.itemId!=when(fragment){
                 is HomepageFragment->R.id.home_homepage
                     is MineFragment->R.id.home_mine
+                    is LiveRoomFragment-> R.id.hoem_recording
                     else->R.id.home_homepage
             }){
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.content,
                         when(it.itemId){
                             R.id.home_homepage->HomepageFragment.newInstance()
+                            R.id.hoem_recording->LiveRoomFragment.newInstance()
                             R.id.home_mine->MineFragment.newInstance()
                             else->HomepageFragment.newInstance()
                         })
@@ -59,6 +62,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding,HomeViewModel>() {
         supportFragmentManager.addFragmentOnAttachListener{_,fragment->
             val itemId=when(fragment){
                 is HomepageFragment->R.id.home_homepage
+                is LiveRoomFragment->R.id.hoem_recording
                 is MineFragment->R.id.home_mine
                 else->R.id.home_homepage
             }
