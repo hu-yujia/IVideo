@@ -1,5 +1,6 @@
 package com.example.homepager.net
 
+import android.annotation.SuppressLint
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
@@ -9,7 +10,17 @@ import java.lang.reflect.Type
 import java.text.SimpleDateFormat
 import java.util.TimeZone
 
+
+/*
+ 在deserialize方法中，
+ 首先通过JsonDeserializationContext的deserialize方法将json元素转换为字符串类型。
+ 然后，设置日期时间格式为"yyyy-MM-dd HH:mm:ss"，并将时区设置为GMT。
+ 接着，将字符串解析为日期对象，最后将时区设置为默认时区，并使用SimpleDateFormat的format方法将日期对象格式化为指定格式的字符串。
+ */
+
+
 class DataDeserialzer :JsonDeserializer<String>,JsonSerializer<String>{
+    @SuppressLint("SimpleDateFormat")
     private val sdf=SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     override fun deserialize(
         json: JsonElement?,
@@ -23,7 +34,12 @@ class DataDeserialzer :JsonDeserializer<String>,JsonSerializer<String>{
         return sdf.format(parse)
     }
 
-    override fun serialize(
+
+/*
+在serialize方法中，
+通过JsonSerializationContext的serialize方法将字符串转换为JsonElement对象，并返回该对象。
+*/
+override fun serialize(
         src: String?,
         typeOfSrc: Type?,
         context: JsonSerializationContext?

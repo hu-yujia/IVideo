@@ -31,6 +31,6 @@ ext {
     urls = [
             dev:"http://10.161.9.80:8083/",
             test:"http://10.161.9.80:8083/",
-            RTMP:"rtmp://10.161.9.80:1953/live/test"
+            RTMP:"rtmp://10.161.9.80/live/livestream"
     ]
 }
