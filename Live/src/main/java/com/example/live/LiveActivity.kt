@@ -22,5 +22,6 @@ class LiveActivity : AppCompatActivity() {
             finish()
         }
         lifecycle.addObserver(GSYLifecycleObServer(binding.player))
+        binding.player.startPlayLogic()
     }
 }
